@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationThesis", "GraduationThesis\GraduationThesis.csproj", "{A21A0A69-7360-4640-9D8F-E67DF357E595}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GraduationThesisRegister", "GraduationThesisRegister", "{83243D3D-B10E-415C-9EB5-27E14A00F983}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53961"
+		Debug.AspNetCompiler.PhysicalPath = "GraduationThesisRegister\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53961\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53961"
+		Release.AspNetCompiler.PhysicalPath = "GraduationThesisRegister\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53961\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53961"
+		SlnRelativePath = "GraduationThesisRegister\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GraduationThesisTest", "GraduationThesisTest", "{7CDDEAF7-8B60-4DBB-A460-AA6E772B27D2}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53368"
+		Debug.AspNetCompiler.PhysicalPath = "GraduationThesisTest\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53368\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53368"
+		Release.AspNetCompiler.PhysicalPath = "GraduationThesisTest\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53368\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53368"
+		SlnRelativePath = "GraduationThesisTest\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A21A0A69-7360-4640-9D8F-E67DF357E595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21A0A69-7360-4640-9D8F-E67DF357E595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21A0A69-7360-4640-9D8F-E67DF357E595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21A0A69-7360-4640-9D8F-E67DF357E595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83243D3D-B10E-415C-9EB5-27E14A00F983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83243D3D-B10E-415C-9EB5-27E14A00F983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83243D3D-B10E-415C-9EB5-27E14A00F983}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{83243D3D-B10E-415C-9EB5-27E14A00F983}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7CDDEAF7-8B60-4DBB-A460-AA6E772B27D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDDEAF7-8B60-4DBB-A460-AA6E772B27D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDDEAF7-8B60-4DBB-A460-AA6E772B27D2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDDEAF7-8B60-4DBB-A460-AA6E772B27D2}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18152585-99BA-4FC4-9BE0-029EC63128FC}
+	EndGlobalSection
+EndGlobal

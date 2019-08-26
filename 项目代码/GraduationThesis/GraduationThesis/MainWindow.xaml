@@ -1,0 +1,239 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraduationThesis"
+        xmlns:controls="clr-namespace:GraduationThesis.Controls"
+        xmlns:UserControls="clr-namespace:GraduationThesis.UserControls" x:Class="GraduationThesis.MainWindow"
+        mc:Ignorable="d"
+        Title="项目管理实施系统" Height="536" Width="1124" Background="Transparent"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Style="{StaticResource for_noresize_window}" MouseMove="Window_MouseMove">
+    <Border Background="#FF3C8AFF">
+        <Grid>
+            <TabControl Style="{StaticResource TabControlStyle}" Margin="0,29,0,0"  >
+                <!--通过DataGrid展示项目的详细进展情况
+                具体需求如下：
+                    1）展示项目ID编号、项目名称、项目所属地区、项目起始日期、项目截止日期、项目进展、项目负责人、详细信息(Button按钮调用项目详情)
+                    2）通过Button按钮调用项目详情
+                    3）关于项目详情的设计：(待议 参见Window_Project)
+                -->
+
+                <TabItem Header="项目进展" Foreground="#ddffffff" Style="{StaticResource TabItemStyle}">
+                    <DataGrid x:Name="DataGrid" AutoGenerateColumns="False"  VerticalAlignment="Top"
+                                  CanUserSortColumns="False"     Margin="5" IsReadOnly="True"
+                                  CanUserResizeColumns="False" CanUserResizeRows="False"  SelectionMode="Single"
+                                  CanUserReorderColumns="False" AlternationCount="2"  RowHeaderWidth="0" CanUserAddRows="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="编号" Width="80"  Binding="{Binding ProjectID}"/>
+                            <DataGridTextColumn Header="项目名称"   Width="250"  Binding="{Binding ProjectName}"/>
+                            <DataGridTextColumn Header="所属地区"  Width="100"  Binding="{Binding ProjectArea}"/>
+                            <DataGridTextColumn Header="起始日期"  Width="150"  Binding="{Binding ProjectStarttime}"/>
+                            <DataGridTextColumn Header="截止日期"  Width="150"  Binding="{Binding ProjectStoptime}"/>
+                            <!--以进度条的形式展示项目精度-->
+                            <DataGridTemplateColumn Header="进展"  Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ProgressBar Height="15" Width="170" Value="{Binding ProjectValue }" Margin="10"  />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="负责人"  Width="80" Binding="{Binding ProjectMainstff}"/>
+                            <!--添加Button按钮加载项目详细信息-->
+                            <DataGridTemplateColumn Header="详细信息" Width="1*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="Btn_LookInfo" Style="{StaticResource BtnInfoStyle}" Content="查看" Click="Btn_LookInfo_Click" Margin="5"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="项目管理" Foreground="#ddffffff" Style="{StaticResource TabItemStyle}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
+                        <Grid  Background="#FF7D99F7" Width="1104" Height="457">
+                            <Grid  x:Name="Progrid" Background="#FF5D80F3" Margin="115,58,89,77" Visibility="Hidden">
+                                <Button x:Name="Btn_Back" Style="{StaticResource BtnInfoStyle}" Content="返回"  Click="Btn_Back_Click" Margin="10,19,820,278"/>
+                                <Label Content="项目名称" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,24,0,0" VerticalAlignment="Top"/>
+                                <Label Content="项目所属地区" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,62,0,0" VerticalAlignment="Top"/>
+                                <Label Content="项目所有者" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,100,0,0" VerticalAlignment="Top"/>
+                                <Label Content="项目所属部门编号" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,140,0,0" VerticalAlignment="Top"/>
+                                <Label Content="项目负责人" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,180,0,0" VerticalAlignment="Top"/>
+                                <Label Content="项目业务员" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="171,222,0,0" VerticalAlignment="Top"/>
+                                <Button x:Name="Btn_addProject" Style="{StaticResource BtnInfoStyle}" Content="保存"  Click="Btn_addProject_Click" Margin="388,272,392,25" Width="Auto"/>
+
+                                <TextBox  Background="{x:Null}" BorderThickness="0,0,0,1" Margin="330,21,150,272" FontSize="14" Foreground="White"></TextBox>
+                                <TextBox  Background="{x:Null}" BorderThickness="0,0,0,1" Margin="330,100,150,193" FontSize="14" Foreground="White"></TextBox>
+                                <TextBox  Background="{x:Null}" BorderThickness="0,0,0,1" Margin="330,140,150,153" FontSize="14" Foreground="White"></TextBox>
+                                <ComboBox Margin="330,62,150,231" IsEditable="False" BorderBrush="#e8e8e8">
+                                    <ComboBoxItem Content="华东区" ></ComboBoxItem>
+                                    <ComboBoxItem Content="华北区" ></ComboBoxItem>
+                                    <ComboBoxItem Content="华南区" ></ComboBoxItem>
+                                    <ComboBoxItem Content="华中区" ></ComboBoxItem>
+                                </ComboBox>
+                                <ComboBox Margin="330,180,150,113" IsEditable="False" BorderBrush="#e8e8e8">
+                                    <ComboBoxItem Content="雪倾城" ></ComboBoxItem>
+                                </ComboBox>
+                                <controls:MultiComboBox x:Name="MultiCmb" BorderBrush="#e8e8e8" Margin="330,222,150,71" Width="Auto"/>
+                            </Grid>
+                            <WrapPanel x:Name="wra" Background="White" Visibility="Visible">
+                                <TabControl Style="{StaticResource TabControlStyle1}" Height="400" Width="300"
+                                    Background="#FF4066E7" BorderThickness="1" BorderBrush="#3fb0f9" Margin="30 20">
+                                    <TabItem Style="{StaticResource TabItemStyle1}" Cursor="Hand" Header="智能商超管理系统项目" Height="38" >
+                                        <Grid Background="#33ffffff">
+                                            <controls:ButtonEx Content="查看详情" HorizontalAlignment="Left" Height="35" Margin="103,261,0,0" VerticalAlignment="Top" Width="100"/>
+                                            <Label Content="项目名称:智能商超管理系统项目&#13;负责人:刘雨晴&#13;项目截止日期:2018-05-10&#13;" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="43,96,0,0" VerticalAlignment="Top"/>
+                                        </Grid>
+                                    </TabItem>
+                                </TabControl>
+                                <TabControl Style="{StaticResource TabControlStyle1}" Height="400" Width="300"
+                                    Background="#FF4066E7" BorderThickness="1" BorderBrush="#3fb0f9" Margin="30 20">
+                                    <TabItem Style="{StaticResource TabItemStyle1}" Cursor="Hand" Header="智能家具系统项目" Height="38" >
+                                        <Grid Background="#33ffffff">
+                                            <controls:ButtonEx Content="查看详情" HorizontalAlignment="Left" Height="35" Margin="103,261,0,0" VerticalAlignment="Top" Width="100"/>
+                                            <Label Content="项目名称:智能家具系统项目&#xA;负责人:赵茜&#xA;项目截止日期:2018-09-29&#xA;" Foreground="White" FontSize="15" HorizontalAlignment="Left" Margin="43,96,0,0" VerticalAlignment="Top"/>
+                                        </Grid>
+                                    </TabItem>
+                                </TabControl>
+                                <TabControl Style="{StaticResource TabControlStyle1}" Height="400" Width="300"
+                                    Background="#FF4066E7" BorderThickness="1" BorderBrush="#3fb0f9" Margin="30 20">
+                                    <TabItem Style="{StaticResource TabItemStyle1}" Cursor="Hand" Header="添加新项" Height="38" >
+                                        <Grid Background="#33ffffff">
+                                            <Label x:Name="lb_Add" Content="十" Foreground="White" FontSize="100" HorizontalAlignment="Left" Margin="94,94,0,0" VerticalAlignment="Top" MouseDown="lb_Add_MouseDown"/>
+                                        </Grid>
+                                    </TabItem>
+                                </TabControl>
+                            </WrapPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="单位管理" Foreground="#ddffffff" Style="{StaticResource TabItemStyle}">
+                    <WrapPanel>
+                        <ListBox VerticalAlignment="Top"  BorderThickness="1" ItemContainerStyle="{StaticResource UserInfoStyle}" x:Name="UserInfoList" BorderBrush="#eaeaeb" 
+                                 Background="#fef9eb" Width="280" Height="434" Margin="10">
+                            <ListBox.Style>
+                                <Style TargetType="ListBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBox">
+                                                <Border x:Name="Bd"  BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        Background="{TemplateBinding Background}"
+                                                        Padding="0">
+                                                    <ScrollViewer Focusable="False">
+                                                        <ItemsPresenter />
+                                                    </ScrollViewer>
+                                                </Border>
+
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.Style>
+                        </ListBox>
+                        <Grid Width="118">
+                            <controls:ButtonEx Content="新增" HorizontalAlignment="Left" Height="35" Margin="10,246,0,0" VerticalAlignment="Top" Width="100"/>
+                            <controls:ButtonEx x:Name="Btn_Exit" Content=">" HorizontalAlignment="Left" Height="36" Margin="10,189,0,0" VerticalAlignment="Top" Width="100" Click="Btn_Exit_Click"/>
+                        </Grid>
+                        <Grid Width="686">
+                            <Label Content="部门所属地区" FontSize="18"  FontFamily="楷体" Margin="156,118,362,302"></Label>
+                            <Label Content="部门负责人" FontSize="18"  FontFamily="楷体" Margin="156,188,362,232"></Label>
+                            <Label Content="部门联系方式" FontSize="18"  FontFamily="楷体" Margin="156,270,362,150"></Label>
+                            <TextBox x:Name="txt_Name" Background="{x:Null}" BorderThickness="0,0,0,1" Margin="330,270,150,150" FontSize="14" Foreground="Gray"></TextBox>
+                            <controls:ButtonEx x:Name="Btn_Delete" Content="删除" Visibility="Hidden" HorizontalAlignment="Left" Height="36" Margin="284,344,0,0" VerticalAlignment="Top" Width="100" Click="Btn_Delete_Click"/>
+                            <controls:ButtonEx x:Name="Btn_Save" Content="保存" Visibility="Hidden" HorizontalAlignment="Left" Height="36" Margin="430,344,0,0" VerticalAlignment="Top" Width="100" Click="Btn_Delete_Click"/>
+                            <ComboBox x:Name="combobox" Margin="330,118,150,302" IsEditable="False" BorderBrush="#e8e8e8">
+                                <ComboBoxItem Content="华东区" ></ComboBoxItem>
+                                <ComboBoxItem Content="华北区" ></ComboBoxItem>
+                                <ComboBoxItem Content="华南区" ></ComboBoxItem>
+                                <ComboBoxItem Content="华中区" ></ComboBoxItem>
+                            </ComboBox>
+
+                            <ComboBox x:Name="comboboxarea" Margin="330,188,150,232" IsEditable="False" BorderBrush="#e8e8e8">
+                                <ComboBoxItem Content="雪倾城" ></ComboBoxItem>
+                                <ComboBoxItem Content="赵茜" ></ComboBoxItem>
+                                <ComboBoxItem Content="云冰心" ></ComboBoxItem>
+                                <ComboBoxItem Content="唐珂" ></ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                    </WrapPanel>
+                </TabItem>
+                <TabItem Header="人员管理" Foreground="#ddffffff" Style="{StaticResource TabItemStyle}">
+                    <WrapPanel Background="White">
+                        <TreeView x:Name="TreeViewOrg" BorderThickness="1" BorderBrush="#BBB" Background="#fef9eb" Width="325"
+                              HorizontalAlignment="Left" Margin="10,10,0,10" ItemTemplate="{StaticResource ItemNode}" Style="{StaticResource DefaultTreeView}" Height="437">
+                        </TreeView>
+                        <Grid Height="432" Width="759">
+                            <Border BorderThickness="1" BorderBrush="#EAEAEA" Background="#FFE08E8E"  Margin="20,50,10,10">
+                                <TabControl  Foreground="Black" Background="Transparent" 
+                                              BorderThickness="0">
+                                    <controls:TabItemClose  Cursor="Hand" Header="刘雨晴" Height="20"  Width="100" NormalBackground="#33ffffff">
+                                        <Grid Background="#aaffffff">
+                                            <controls:ButtonEx Content="编辑信息" HorizontalAlignment="Left" Margin="636,306,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
+                                            <Label Content="人员编号:015&#xA;姓名:刘雨晴&#xA;性别:女&#xA;身份证号码:42032419950245&#xA;手机号码:18018349053&#xA;邮箱地址:cxyminer@163.com&#xA;所属部门:华东区&#xA;" Foreground="Black" FontSize="20" HorizontalAlignment="Left" FontFamily="楷体" Margin="43,30,0,0" VerticalAlignment="Top" Height="251" Width="642"/>
+                                        </Grid>
+                                    </controls:TabItemClose>
+                                    <controls:TabItemClose  Cursor="Hand" Header="雪倾城" Height="20"  Width="100" NormalBackground="#33ffffff">
+                                        <Grid Background="#aaffffff">
+                                            <controls:ButtonEx Content="编辑信息" HorizontalAlignment="Left" Margin="636,306,0,0" VerticalAlignment="Top" Width="75" Height="28"/>
+                                        </Grid>
+                                    </controls:TabItemClose>
+                                    <controls:TabItemClose  Cursor="Hand" Header="天九儿" Height="20"  Width="100" NormalBackground="#33ffffff">
+                                        <Grid Background="#aaffffff">
+                                            <controls:ButtonEx Content="编辑信息" HorizontalAlignment="Left" Margin="636,306,0,0" VerticalAlignment="Top" Width="75" Height="28"/>
+                                        </Grid>
+                                    </controls:TabItemClose>
+                                </TabControl>
+                            </Border>
+                            <controls:ButtonEx Content="新增" HorizontalAlignment="Left" Height="30" Margin="20,10,0,0" VerticalAlignment="Top" Width="80"/>
+
+                        </Grid>
+                    </WrapPanel>
+                </TabItem>
+
+                <TabItem Header="辅助拓展" Foreground="#ddffffff" Style="{StaticResource TabItemStyle}">
+                    <WrapPanel>
+                        <Grid  Background="#fef9eb">
+                            <Calendar  Background="#fef9eb" Margin="326,20,558,273" Style="{DynamicResource CalendarStyle1}" CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
+                              CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
+                              CalendarItemStyle="{DynamicResource CalendarItemStyle1}" FirstDayOfWeek="Sunday" VerticalAlignment="Center" Height="162"/>
+                            <Grid Height="455" Width="1106"/>
+                            <Border Margin="10,10,967,316" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/Images/user.gif"/>
+                                </Border.Background>
+                            </Border>
+                            <Label Content="用户名:admin&#13;&#13;联系方式:18018345096&#13;&#13;电子邮箱:cxyminer@163.com&#13;" Foreground="Black" FontSize="20" HorizontalAlignment="Left" FontFamily="楷体" Margin="10,161,0,0" VerticalAlignment="Top" Height="134" Width="311"/>
+                            <ListView x:Name="ListView"  Style="{StaticResource ListViewStyle1}" Margin="551,10,10,10">
+                                <ListView.View>
+                                    <GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                                        <GridViewColumn Header="序号" Width="100">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Content="{Binding Num}"></CheckBox>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Name}"  Width="100"/>
+                                        <GridViewColumn Header="描述" DisplayMemberBinding="{Binding Template}"  Width="auto">
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <controls:ButtonEx Content="新增代办" HorizontalAlignment="Left" Height="36" Margin="350,200,0,0" VerticalAlignment="Top" Width="172"/>
+                            <controls:ButtonEx Content="修改基本资料" HorizontalAlignment="Left" Height="35" Margin="10,318,0,0" VerticalAlignment="Top" Width="172"/>
+                        </Grid>
+                    </WrapPanel>
+                </TabItem>
+            </TabControl>
+            <StackPanel Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <UserControls:TitleButton HorizontalAlignment="Right"></UserControls:TitleButton>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

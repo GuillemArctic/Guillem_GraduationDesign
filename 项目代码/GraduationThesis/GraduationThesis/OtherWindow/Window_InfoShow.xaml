@@ -1,0 +1,38 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraduationThesis.OtherWindow"
+        xmlns:Controls="clr-namespace:GraduationThesis.Controls" x:Class="GraduationThesis.OtherWindow.Window_InfoShow"
+        mc:Ignorable="d"
+        Title="Window_InfoShow" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" Background="#FF3C8AFF"  WindowStartupLocation="CenterScreen" Style="{StaticResource for_noresize_window}" MouseMove="Window_MouseMove">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="199*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FF3C8AFF" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="780">
+
+        </Grid>
+        <Label x:Name="lb_ProinfoTitle" Content="ProinfoTitle" FontSize="16" Foreground="White" HorizontalAlignment="Left" Margin="10,-5,0,0" VerticalAlignment="Top" Height="32" Width="442"/>
+        <Grid HorizontalAlignment="Left" Height="398" Grid.Row="1" VerticalAlignment="Top" Width="780">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
+                <WrapPanel Background="White">
+                    <TabControl Style="{StaticResource TabControlWithUnderLineStyle}" Foreground="Black" Width="780" Height="398" 
+                                    Background="#FF7D99F7" BorderBrush="Transparent" BorderThickness="1" >
+                        <TabItem x:Name="tab" Style="{StaticResource TabItemExWithUnderLineStyle}" Cursor="Hand" Header="title" Height="38" Width="172">
+                            <Grid Background="#33ffffff" Margin="0,-38,0,-1">
+                                <!--详细信息展示  加载Page-->
+                                <Frame x:Name="FramePage" NavigationUIVisibility="Hidden" Margin="10,40,10,69"/>
+                                <Controls:ButtonEx x:Name="Btn_Close"  Content="关闭" HorizontalAlignment="Left" Height="38" Margin="261,349,0,0" VerticalAlignment="Top" Width="101" Click="Btn_Close_Click"/>
+                                <Controls:ButtonEx x:Name="Btn_Exit"  Content="编辑" HorizontalAlignment="Left" Height="38" Margin="396,349,0,0" VerticalAlignment="Top" Width="101" Click="Btn_Exit_Click"/>
+                               
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<Application x:Class="GraduationThesis.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GraduationThesis"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/Calendar.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/DMSkin.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/ListBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/ListView.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/ProgressBar.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/RadioButton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/ScrollViewer.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/TabControl.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/Treeview.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/GraduationThesis;component/Styles/noresize_Window.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+    
+    
